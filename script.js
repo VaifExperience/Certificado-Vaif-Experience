@@ -10,12 +10,11 @@ const nameError      = document.getElementById('nameError');
 const certNameEl     = document.getElementById('certName');
 const loadingOverlay = document.getElementById('loadingOverlay');
 
-/* Injeta imagens base64 */
 function injectImages() {
   document.getElementById('portalLogoImg').src  = IMG_VAIF;
   document.getElementById('certLogoVaif').src   = IMG_VAIF;
-  document.getElementById('certLogoFed').src    = IMG_FED;
   document.getElementById('certLogoDebora').src = IMG_DEBORA;
+  document.getElementById('certLogoFed').src    = IMG_FED;
 }
 
 function showLoading() { loadingOverlay.style.display = 'flex'; }
@@ -32,7 +31,7 @@ function clearError() {
 }
 
 function toTitleCase(str) {
-  return str.trim().replace(/\s+/g, ' ')
+  return str.trim().replace(/\s+/g,' ')
     .split(' ')
     .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
     .join(' ');
@@ -41,17 +40,17 @@ function toTitleCase(str) {
 function generateCertificate() {
   clearError();
   const raw = nameInput.value.trim();
-  if (!raw)        { setError('Por favor, informe seu nome.'); nameInput.focus(); return; }
+  if (!raw)         { setError('Por favor, informe seu nome.'); nameInput.focus(); return; }
   if (raw.length < 2) { setError('O nome precisa ter ao menos 2 caracteres.'); nameInput.focus(); return; }
 
   certNameEl.textContent = toTitleCase(raw);
 
-  portalScreen.style.opacity    = '0';
+  portalScreen.style.opacity = '0';
   portalScreen.style.transition = 'opacity 0.4s ease';
   setTimeout(() => {
-    portalScreen.style.display  = 'none';
-    certScreen.style.display    = 'block';
-    certScreen.style.opacity    = '0';
+    portalScreen.style.display = 'none';
+    certScreen.style.display   = 'block';
+    certScreen.style.opacity   = '0';
     certScreen.style.transition = 'opacity 0.5s ease';
     requestAnimationFrame(() => requestAnimationFrame(() => {
       certScreen.style.opacity = '1';
@@ -61,14 +60,14 @@ function generateCertificate() {
 }
 
 function newCertificate() {
-  certScreen.style.opacity    = '0';
+  certScreen.style.opacity = '0';
   certScreen.style.transition = 'opacity 0.35s ease';
   setTimeout(() => {
-    certScreen.style.display    = 'none';
-    nameInput.value             = '';
+    certScreen.style.display   = 'none';
+    nameInput.value            = '';
     clearError();
-    portalScreen.style.display  = 'flex';
-    portalScreen.style.opacity  = '0';
+    portalScreen.style.display = 'flex';
+    portalScreen.style.opacity = '0';
     portalScreen.style.transition = 'opacity 0.4s ease';
     requestAnimationFrame(() => requestAnimationFrame(() => {
       portalScreen.style.opacity = '1';
@@ -86,14 +85,18 @@ async function downloadPDF() {
     actionBar.style.display = 'none';
 
     const canvas = await html2canvas(cert, {
-      scale: 2, useCORS: true, allowTaint: true,
-      backgroundColor: '#F5EFE6', logging: false, imageTimeout: 15000,
+      scale: 2.5,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: '#0F1A16',
+      logging: false,
+      imageTimeout: 15000,
     });
     actionBar.style.display = '';
 
     const { jsPDF } = window.jspdf;
     const pdf = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
-    pdf.addImage(canvas.toDataURL('image/jpeg', 1.0), 'JPEG', 0, 0, 297, 210);
+    pdf.addImage(canvas.toDataURL('image/jpeg', 0.98), 'JPEG', 0, 0, 297, 210);
     pdf.save(`Certificado_VAIF_Experience_${certNameEl.textContent.replace(/\s+/g,'_')}.pdf`);
   } catch(err) {
     console.error(err);
@@ -106,11 +109,11 @@ async function downloadPDF() {
 function printCertificate() { window.print(); }
 
 nameInput.addEventListener('keydown', e => { if (e.key === 'Enter') generateCertificate(); });
-nameInput.addEventListener('input',   ()  => { if (nameInput.classList.contains('input-error')) clearError(); });
+nameInput.addEventListener('input',   () => { if (nameInput.classList.contains('input-error')) clearError(); });
 
 document.addEventListener('DOMContentLoaded', () => {
   injectImages();
-  document.body.style.opacity    = '0';
+  document.body.style.opacity = '0';
   document.body.style.transition = 'opacity 0.5s ease';
   requestAnimationFrame(() => requestAnimationFrame(() => {
     document.body.style.opacity = '1';

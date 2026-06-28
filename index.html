@@ -6,7 +6,7 @@
   <title>Portal Oficial de Certificados · VAIF Experience</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <link rel="stylesheet" href="style.css" />
@@ -18,7 +18,7 @@
 </head>
 <body>
 
-  <!-- ─── PORTAL SCREEN ─── -->
+  <!-- ─── PORTAL ─── -->
   <main class="portal-screen" id="portalScreen">
     <div class="portal-card">
       <div class="portal-logo-wrap">
@@ -36,21 +36,21 @@
     </div>
   </main>
 
-  <!-- ─── CERTIFICATE SCREEN ─── -->
+  <!-- ─── CERTIFICADO ─── -->
   <section class="cert-screen" id="certScreen" style="display:none;">
 
     <div class="action-bar" id="actionBar">
       <div class="action-bar-inner">
         <button class="btn-action btn-download" onclick="downloadPDF()">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Baixar PDF
         </button>
         <button class="btn-action btn-print" onclick="printCertificate()">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
           Imprimir
         </button>
         <button class="btn-action btn-new" onclick="newCertificate()">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           Gerar outro
         </button>
       </div>
@@ -59,85 +59,99 @@
     <div class="cert-wrapper">
       <div class="certificate" id="certificate">
 
-        <!-- Bordas decorativas nos cantos -->
-        <div class="corner corner-tl"></div>
-        <div class="corner corner-tr"></div>
-        <div class="corner corner-bl"></div>
-        <div class="corner corner-br"></div>
+        <!-- Brilho topo -->
+        <div class="glow-top"></div>
+        <!-- Curvas decorativas -->
+        <div class="deco-arc-tl"></div>
+        <div class="deco-arc-br"></div>
 
-        <!-- Faixa lateral esquerda escura -->
-        <div class="side-band-left">
-          <div class="side-band-text">V · A · I · F</div>
-        </div>
+        <!-- Moldura externa -->
+        <div class="frame-outer"></div>
+        <!-- Moldura interna -->
+        <div class="frame-inner"></div>
 
-        <!-- Conteúdo principal -->
-        <div class="cert-main">
+        <!-- Cantos -->
+        <div class="corner c-tl"><div class="corner-h"></div><div class="corner-v"></div></div>
+        <div class="corner c-tr"><div class="corner-h"></div><div class="corner-v"></div></div>
+        <div class="corner c-bl"><div class="corner-h"></div><div class="corner-v"></div></div>
+        <div class="corner c-br"><div class="corner-h"></div><div class="corner-v"></div></div>
 
-          <!-- Topo -->
-          <div class="cert-top">
-            <div class="cert-top-logo">
-              <img id="certLogoVaif" alt="VAIF Experience" class="cert-logo-vaif" />
-            </div>
-            <div class="cert-top-right">
-              <span class="cert-eyebrow">Certificado de Participação</span>
-              <div class="cert-gold-rule"></div>
-            </div>
+        <!-- CONTEÚDO -->
+        <div class="cert-content">
+
+          <!-- Logo VAIF grande no topo -->
+          <div class="cert-logo-wrap">
+            <img id="certLogoVaif" alt="VAIF Experience" class="cert-logo-main" />
+          </div>
+
+          <!-- Ornamento -->
+          <div class="ornament-row">
+            <span class="orn-line-h"></span>
+            <span class="orn-diamond">◈</span>
+            <span class="orn-line-h"></span>
+          </div>
+
+          <!-- CERTIFICADO DE PARTICIPAÇÃO -->
+          <h1 class="cert-title-big">CERTIFICADO</h1>
+          <p class="cert-title-sub">D E &nbsp; P A R T I C I P A Ç Ã O</p>
+
+          <!-- Ornamento pequeno -->
+          <div class="ornament-sm">◆</div>
+
+          <!-- Certificamos que -->
+          <p class="cert-certifies">C E R T I F I C A M O S &nbsp; Q U E</p>
+
+          <!-- Linha de nome -->
+          <div class="cert-name-line">
+            <div class="name-rule"></div>
+          </div>
+
+          <!-- NOME -->
+          <h2 class="cert-name" id="certName">Nome da Participante</h2>
+
+          <!-- participou -->
+          <p class="cert-participated">participou do VAIF EXPERIENCE,</p>
+          <p class="cert-tagline">A IMERSÃO QUE TRANSFORMA<br/>PROFISSIONAIS DA BELEZA EM EMPRESÁRIAS.</p>
+
+          <!-- Meta -->
+          <div class="cert-meta-row">
+            <span class="cert-meta-item">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              27 DE JULHO DE 2026
+            </span>
+            <span class="cert-meta-sep">|</span>
+            <span class="cert-meta-item">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              4H
+            </span>
+          </div>
+
+        </div><!-- /cert-content -->
+
+        <!-- RODAPÉ -->
+        <div class="cert-footer">
+          <!-- Debora -->
+          <div class="cert-footer-left">
+            <img id="certLogoDebora" alt="Debora Olliveira" class="footer-sig" />
+            <p class="footer-name">DÉBORA OLLIVEIRA</p>
+            <p class="footer-role">MENTORA | PALESTRANTE | COMUNICADORA</p>
+            <p class="footer-role">CRIADORA DO MÉTODO VAIF</p>
           </div>
 
           <!-- Centro -->
-          <div class="cert-center">
-            <p class="cert-certifies">Certificamos que</p>
-            <h2 class="cert-name" id="certName">Nome da Participante</h2>
-            <div class="cert-ornament">
-              <span class="orn-line"></span>
-              <span class="orn-icon">✦</span>
-              <span class="orn-line"></span>
-            </div>
-            <p class="cert-participated">participou da imersão</p>
-            <h3 class="cert-event">VAIF EXPERIENCE</h3>
-            <p class="cert-tagline">A imersão que transforma profissionais da beleza em empresárias.</p>
-            <p class="cert-frase">"Você não sai daqui a mesma que entrou —<br/>e esse é exatamente o ponto."</p>
+          <div class="cert-footer-center">
+            <div class="ornament-diamond-lg">◈</div>
           </div>
 
-          <!-- Meta info -->
-          <div class="cert-meta-bar">
-            <div class="cert-meta-item">
-              <span class="cert-meta-label">Carga horária</span>
-              <span class="cert-meta-value">4 horas</span>
-            </div>
-            <div class="cert-meta-sep"></div>
-            <div class="cert-meta-item">
-              <span class="cert-meta-label">Data</span>
-              <span class="cert-meta-value">27 de julho de 2026</span>
-            </div>
-            <div class="cert-meta-sep"></div>
-            <div class="cert-meta-item">
-              <span class="cert-meta-label">Local</span>
-              <span class="cert-meta-value">Aracaju — SE</span>
-            </div>
+          <!-- FEPCSSP -->
+          <div class="cert-footer-right">
+            <img id="certLogoFed" alt="FEPCSSP" class="footer-fed" />
           </div>
-
-          <!-- Rodapé -->
-          <div class="cert-footer">
-            <div class="cert-sig">
-              <img id="certLogoFed" alt="FEPCSSP" class="cert-sig-img cert-sig-fed" />
-            </div>
-            <div class="cert-footer-center">
-              <div class="cert-gold-rule-short"></div>
-              <span class="cert-pilares">Visão · Atitude · Identidade · Fé</span>
-              <div class="cert-gold-rule-short"></div>
-            </div>
-            <div class="cert-sig">
-              <img id="certLogoDebora" alt="Debora Olliveira" class="cert-sig-img cert-sig-debora" />
-            </div>
-          </div>
-
-        </div><!-- /cert-main -->
-
-        <!-- Faixa lateral direita -->
-        <div class="side-band-right">
-          <div class="side-band-text">2026</div>
         </div>
+
+        <!-- Linha dourada topo e base -->
+        <div class="edge-line edge-top"></div>
+        <div class="edge-line edge-bottom"></div>
 
       </div><!-- /certificate -->
     </div>
