@@ -337,6 +337,8 @@ img  { display: block; max-width: 100%; }
   justify-content: space-between;
   padding: 0 5.5% 2.5%;
   z-index: 3;
+  width: 50px;
+   
 }
 
 .cert-footer-left,
