@@ -31,7 +31,7 @@ Coloque os arquivos na pasta `img/` com exatamente esses nomes:
 | Arquivo | Uso | Tamanho recomendado |
 |---|---|---|
 | `logo-vaif.png` | Portal e topo do certificado | PNG transparente, ~300px altura |
-| `logo-debora.png` | Assinatura no rodapé | PNG transparente, ~200px altura |
+| `logo-debora.png` | Assinatura no rodapé | PNG transparente, ~60px altura |
 | `logo-federacao.png` | Logo da Federação no rodapé | PNG transparente, ~200px altura |
 
 > **Sem as imagens**, o portal exibe fallbacks de texto elegantes e funciona normalmente.
